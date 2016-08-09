@@ -45,6 +45,7 @@ def call_invalid_argument():
 	print_logs("Bad command: one or more invalid arguments passed", force_log=True)
 	exit(2)
 
+#Start
 args_for_loop = list(args)
 for arg in args_for_loop:
 	open_file_flag, save_file_flag, file_name = file_args(arg)
@@ -67,18 +68,19 @@ for arg in args_for_loop:
 		call_invalid_argument()
 		args.remove(arg)
 
+#Check if file provided is empty
 if file_to_open is None:
 	print_logs("Requested file to open is missing, exiting", force_log=True)
 	exit(2)
-
+#Check if file exists
 if not os.path.exists(file_to_open):
 	print_logs("File does not exists", force_log=True)
 	exit(1)
-
+#Check if target file is empty
 if file_to_return is None:
 	print_logs("Requested filename of output is missing, exiting", force_log=True)
 	exit(2)
-
+#Check if target file path i exists
 if os.path.exists(file_to_return):
 	if not prompt:
 		prompt_input = raw_input('Return file exists. Overwrite (y/n) ? FileName: %s'%file_to_return)
